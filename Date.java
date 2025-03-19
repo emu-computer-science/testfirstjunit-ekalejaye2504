@@ -251,6 +251,23 @@ public class Date
             System.exit(0);
             return "Error"; //to keep the compiler happy
         }
+    } 
+    public Date addOneDay() {
+        int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int monthIndex = getMonth() - 1; // Convert month to zero index
+
+        if (day < daysInMonth[monthIndex]) {
+            day++; 
+        } else {
+            day = 1; // Reset day to 1
+            if (monthIndex < 11) {
+                month = monthString(monthIndex + 2); 
+            } else {
+                month = "January"; // Reset to January
+                year++; // Increment year
+            }
+        }
+        return this; // Return the updated Date object
     }
     public static void main(String[] args) {
         System.out.println("Main in Date.");
